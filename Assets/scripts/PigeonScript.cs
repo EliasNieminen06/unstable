@@ -7,6 +7,7 @@ public class PigeonScript : MonoBehaviour
 {
     public NavMeshAgent agent;
     Vector3 newPos;
+    public GameObject gameManager;
 
     private void Start()
     {
@@ -27,13 +28,14 @@ public class PigeonScript : MonoBehaviour
     {
         float posX = Random.Range(-18, 18);
         float posZ = Random.Range(-18, 18);
-        newPos = new Vector3(posX, 1.007749f, posZ);
+        newPos = new Vector3(posX, 0.7730263f, posZ);
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "lager")
         {
+            gameManager.GetComponent<GameManager>().pigeonDead();
             Destroy(this.gameObject);
         }
     }
